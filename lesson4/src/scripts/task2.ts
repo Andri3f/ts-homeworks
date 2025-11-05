@@ -1,0 +1,39 @@
+
+// 6. Моделювання Персонажів у RPG (Role-Playing Game) 🧙‍♂️
+// Клас: Character (Персонаж). Має поля: name, health, mana, charClass. Містить методи attack() та takeDamage().
+// Enum: CharacterClass (КласПерсонажа). Визначає професії/класи: WARRIOR (Воїн), MAGE (Маг), ARCHER (Лучник), ROGUE (Розбійник).
+
+enum CharacterClass {
+   WARRIOR= "Воїн",   
+   MAGE= "Маг",
+   ARCHER= "Лучник",
+   ROGUE= "Розбійник"
+}
+class Character {
+   constructor(public name: string, private health: number, private mana: number, private charClass: CharacterClass) {
+
+   }
+   attack(manaOnAttack: number): void {
+      if (this.mana >= manaOnAttack) {
+         this.mana -= manaOnAttack
+         console.log(`${this.name} атакує з витратою ${manaOnAttack} манни`)
+      } else {
+         console.log(`${this.name} не має достатньо манни для атаки`)
+      }
+   }
+   takeDamage(damage: number): void {
+      if (this.health > 0) {
+         this.health -= damage
+         console.log(`${this.name} отримав ${damage} шкоди`)
+      } else {
+         console.log(`${this.name} вже помер`)
+      }
+      console.log(`${this.name} отримав ${damage} шкоди`)
+   }
+}
+const character = new Character("John", 100, 100, CharacterClass.WARRIOR)
+console.log('character', character);
+character.attack(10)
+console.log('character after attack', character);
+character.takeDamage(20)
+console.log('character after takeDamage', character);
